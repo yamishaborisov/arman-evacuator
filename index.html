@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Эвакуатор 24/7 - Воронеж и область</title>
+		<style>
+			:root {
+				--primary-color: #e74c3c;
+				--secondary-color: #2c3e50;
+				--accent-color: #f39c12;
+				--light-color: #ecf0f1;
+				--dark-color: #2c3e50;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: 'Roboto', Arial, sans-serif;
+			}
+
+			body {
+				background-color: var(--light-color);
+				color: var(--dark-color);
+				line-height: 1.6;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 20px;
+			}
+
+			header {
+				background-color: var(--secondary-color);
+				color: white;
+				padding: 20px 0;
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			}
+
+			.header-content {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.logo {
+				display: flex;
+				align-items: center;
+			}
+
+			.logo h1 {
+				font-size: 24px;
+				margin-left: 10px;
+			}
+
+			.logo-icon {
+				font-size: 32px;
+				color: var(--primary-color);
+			}
+
+			.contact-button {
+				background-color: var(--primary-color);
+				color: white;
+				border: none;
+				padding: 12px 24px;
+				border-radius: 50px;
+				font-weight: bold;
+				cursor: pointer;
+				transition: background-color 0.3s;
+				font-size: 18px;
+			}
+
+			.contact-button:hover {
+				background-color: #c0392b;
+			}
+
+			.hero {
+				background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+					url('/api/placeholder/1200/600') center/cover no-repeat;
+				height: 70vh;
+				display: flex;
+				align-items: center;
+				color: white;
+				text-align: center;
+				position: relative;
+			}
+
+			.hero-content {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+
+			.hero h2 {
+				font-size: 48px;
+				margin-bottom: 20px;
+				text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+			}
+
+			.hero p {
+				font-size: 20px;
+				margin-bottom: 30px;
+				text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+			}
+
+			.cta-button {
+				background-color: var(--primary-color);
+				color: white;
+				border: none;
+				padding: 15px 30px;
+				border-radius: 50px;
+				font-size: 20px;
+				font-weight: bold;
+				cursor: pointer;
+				transition: all 0.3s;
+				text-decoration: none;
+				display: inline-block;
+			}
+
+			.cta-button:hover {
+				background-color: #c0392b;
+				transform: scale(1.05);
+			}
+
+			.features {
+				padding: 80px 0;
+				background-color: white;
+			}
+
+			.section-title {
+				text-align: center;
+				margin-bottom: 60px;
+			}
+
+			.section-title h3 {
+				font-size: 36px;
+				color: var(--secondary-color);
+				position: relative;
+				display: inline-block;
+				padding-bottom: 15px;
+			}
+
+			.section-title h3::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 80px;
+				height: 3px;
+				background-color: var(--primary-color);
+			}
+
+			.features-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 30px;
+			}
+
+			.feature-card {
+				background-color: var(--light-color);
+				border-radius: 10px;
+				overflow: hidden;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s, box-shadow 0.3s;
+			}
+
+			.feature-card:hover {
+				transform: translateY(-10px);
+				box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+			}
+
+			.feature-icon {
+				background-color: var(--primary-color);
+				color: white;
+				height: 100px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 40px;
+			}
+
+			.feature-content {
+				padding: 20px;
+			}
+
+			.feature-content h4 {
+				font-size: 22px;
+				margin-bottom: 15px;
+				color: var(--secondary-color);
+			}
+
+			.services {
+				padding: 80px 0;
+				background-color: var(--light-color);
+			}
+
+			.service-list {
+				margin-top: 40px;
+			}
+
+			.service-item {
+				display: flex;
+				align-items: center;
+				background-color: white;
+				border-radius: 10px;
+				padding: 20px;
+				margin-bottom: 20px;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+				transition: transform 0.3s;
+			}
+
+			.service-item:hover {
+				transform: translateX(10px);
+			}
+
+			.service-icon {
+				background-color: var(--secondary-color);
+				color: white;
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 24px;
+				margin-right: 20px;
+				flex-shrink: 0;
+			}
+
+			.service-content h4 {
+				font-size: 20px;
+				margin-bottom: 5px;
+				color: var(--secondary-color);
+			}
+
+			.pricing {
+				padding: 80px 0;
+				background-color: white;
+			}
+
+			.pricing-cards {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 30px;
+				margin-top: 40px;
+			}
+
+			.pricing-card {
+				background-color: var(--light-color);
+				border-radius: 10px;
+				overflow: hidden;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+				text-align: center;
+				transition: transform 0.3s;
+			}
+
+			.pricing-card:hover {
+				transform: scale(1.03);
+			}
+
+			.pricing-header {
+				background-color: var(--secondary-color);
+				color: white;
+				padding: 20px;
+			}
+
+			.pricing-header h4 {
+				font-size: 24px;
+				margin-bottom: 10px;
+			}
+
+			.price {
+				font-size: 36px;
+				font-weight: bold;
+			}
+
+			.pricing-body {
+				padding: 30px 20px;
+			}
+
+			.pricing-features {
+				list-style: none;
+				margin-bottom: 30px;
+			}
+
+			.pricing-features li {
+				margin-bottom: 10px;
+				position: relative;
+				padding-left: 25px;
+			}
+
+			.pricing-features li:before {
+				content: '✓';
+				color: var(--primary-color);
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-weight: bold;
+			}
+
+			.testimonials {
+				padding: 80px 0;
+				background-color: var(--light-color);
+			}
+
+			.testimonial-cards {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 30px;
+				margin-top: 40px;
+			}
+
+			.testimonial-card {
+				background-color: white;
+				border-radius: 10px;
+				padding: 30px;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+				position: relative;
+			}
+
+			.testimonial-card:before {
+				content: '"';
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				font-size: 60px;
+				color: rgba(0, 0, 0, 0.1);
+				font-family: Georgia, serif;
+			}
+
+			.testimonial-content {
+				font-style: italic;
+				margin-bottom: 20px;
+				padding-left: 20px;
+			}
+
+			.testimonial-author {
+				display: flex;
+				align-items: center;
+			}
+
+			.author-avatar {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				background-color: var(--secondary-color);
+				margin-right: 15px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: white;
+				font-weight: bold;
+			}
+
+			.author-info h5 {
+				font-size: 18px;
+				margin-bottom: 5px;
+			}
+
+			.contact {
+				padding: 80px 0;
+				background-color: var(--secondary-color);
+				color: white;
+			}
+
+			.contact-info {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 30px;
+				margin-top: 40px;
+			}
+
+			.contact-card {
+				background-color: rgba(255, 255, 255, 0.1);
+				border-radius: 10px;
+				padding: 30px;
+				text-align: center;
+				transition: transform 0.3s;
+			}
+
+			.contact-card:hover {
+				transform: translateY(-10px);
+			}
+
+			.contact-icon {
+				font-size: 40px;
+				color: var(--primary-color);
+				margin-bottom: 15px;
+			}
+
+			.contact-card h4 {
+				font-size: 22px;
+				margin-bottom: 15px;
+			}
+
+			.contact-form {
+				background-color: white;
+				border-radius: 10px;
+				padding: 40px;
+				margin-top: 40px;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			}
+
+			.form-group {
+				margin-bottom: 20px;
+			}
+
+			.form-group label {
+				display: block;
+				margin-bottom: 8px;
+				font-weight: bold;
+				color: var(--secondary-color);
+			}
+
+			.form-control {
+				width: 100%;
+				padding: 12px 15px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				font-size: 16px;
+				transition: border-color 0.3s;
+			}
+
+			.form-control:focus {
+				border-color: var(--primary-color);
+				outline: none;
+			}
+
+			textarea.form-control {
+				resize: vertical;
+				min-height: 120px;
+			}
+
+			.submit-button {
+				background-color: var(--primary-color);
+				color: white;
+				border: none;
+				padding: 12px 25px;
+				border-radius: 5px;
+				font-size: 18px;
+				font-weight: bold;
+				cursor: pointer;
+				transition: background-color 0.3s;
+				width: 100%;
+			}
+
+			.submit-button:hover {
+				background-color: #c0392b;
+			}
+
+			.map {
+				margin-top: 40px;
+				border-radius: 10px;
+				overflow: hidden;
+				height: 400px;
+				background-color: #ddd;
+			}
+
+			footer {
+				background-color: var(--dark-color);
+				color: white;
+				padding: 30px 0;
+				text-align: center;
+			}
+
+			.footer-content {
+				margin-bottom: 20px;
+			}
+
+			.footer-links {
+				display: flex;
+				justify-content: center;
+				margin-bottom: 20px;
+			}
+
+			.footer-links a {
+				color: white;
+				margin: 0 15px;
+				text-decoration: none;
+				transition: color 0.3s;
+			}
+
+			.footer-links a:hover {
+				color: var(--primary-color);
+			}
+
+			.social-links {
+				display: flex;
+				justify-content: center;
+				margin-bottom: 20px;
+			}
+
+			.social-link {
+				width: 40px;
+				height: 40px;
+				background-color: rgba(255, 255, 255, 0.1);
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: 0 10px;
+				transition: background-color 0.3s;
+			}
+
+			.social-link:hover {
+				background-color: var(--primary-color);
+			}
+
+			.copyright {
+				font-size: 14px;
+				color: rgba(255, 255, 255, 0.7);
+			}
+
+			/* Floating call button */
+			.floating-call {
+				position: fixed;
+				bottom: 30px;
+				right: 30px;
+				background-color: var(--primary-color);
+				color: white;
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+				z-index: 99;
+				cursor: pointer;
+				animation: pulse 2s infinite;
+			}
+
+			@keyframes pulse {
+				0% {
+					transform: scale(1);
+					box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+				}
+				50% {
+					transform: scale(1.1);
+					box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+				}
+				100% {
+					transform: scale(1);
+					box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+				}
+			}
+
+			/* Responsive styles */
+			@media (max-width: 768px) {
+				.hero h2 {
+					font-size: 36px;
+				}
+
+				.hero p {
+					font-size: 18px;
+				}
+
+				.header-content {
+					flex-direction: column;
+					text-align: center;
+				}
+
+				.logo {
+					margin-bottom: 15px;
+					justify-content: center;
+				}
+
+				.contact-button {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Header -->
+		<header>
+			<div class="container">
+				<div class="header-content">
+					<div class="logo">
+						<div class="logo-icon">🚚</div>
+						<h1>ЭвакуаторВоронеж</h1>
+					</div>
+					<button class="contact-button">+7 (951) 861-51-11</button>
+				</div>
+			</div>
+		</header>
+
+		<!-- Hero Section -->
+		<section class="hero">
+			<div class="container">
+				<div class="hero-content">
+					<h2>Эвакуатор 24/7 в Воронеже и области</h2>
+					<p>
+						Быстрая и надежная эвакуация автомобилей любой сложности. Прибытие в
+						течение 30 минут. Работаем круглосуточно без выходных!
+					</p>
+					<a href="tel:+79518615111" class="cta-button">Вызвать эвакуатор</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features Section -->
+		<section class="features">
+			<div class="container">
+				<div class="section-title">
+					<h3>Почему выбирают нас</h3>
+				</div>
+				<div class="features-grid">
+					<div class="feature-card">
+						<div class="feature-icon">⏱️</div>
+						<div class="feature-content">
+							<h4>Быстрое прибытие</h4>
+							<p>
+								Среднее время прибытия по городу — 30 минут. Работаем 24 часа в
+								сутки, 7 дней в неделю.
+							</p>
+						</div>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">💰</div>
+						<div class="feature-content">
+							<h4>Прозрачные цены</h4>
+							<p>
+								Никаких скрытых платежей. Стоимость озвучиваем сразу и она не
+								меняется в процессе.
+							</p>
+						</div>
+					</div>
+					<div class="feature-card">
+						<div class="feature-icon">👨‍🔧</div>
+						<div class="feature-content">
+							<h4>Опытные специалисты</h4>
+							<p>
+								Наши водители имеют многолетний опыт эвакуации автомобилей любой
+								сложности.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services Section -->
+		<section class="services">
+			<div class="container">
+				<div class="section-title">
+					<h3>Наши услуги</h3>
+				</div>
+				<div class="service-list">
+					<div class="service-item">
+						<div class="service-icon">🚗</div>
+						<div class="service-content">
+							<h4>Эвакуация легковых автомобилей</h4>
+							<p>
+								Быстрая и безопасная эвакуация легковых автомобилей любых марок
+								и моделей.
+							</p>
+						</div>
+					</div>
+					<div class="service-item">
+						<div class="service-icon">🚚</div>
+						<div class="service-content">
+							<h4>Эвакуация грузовых автомобилей</h4>
+							<p>
+								Эвакуируем грузовые автомобили до 5 тонн в любую точку города и
+								области.
+							</p>
+						</div>
+					</div>
+					<div class="service-item">
+						<div class="service-icon">🏍️</div>
+						<div class="service-content">
+							<h4>Эвакуация мотоциклов</h4>
+							<p>Бережная транспортировка мотоциклов и другой мототехники.</p>
+						</div>
+					</div>
+					<div class="service-item">
+						<div class="service-icon">🔧</div>
+						<div class="service-content">
+							<h4>Техпомощь на дороге</h4>
+							<p>
+								Запуск двигателя, подвоз топлива, замена колеса и прочие услуги
+								техпомощи.
+							</p>
+						</div>
+					</div>
+					<div class="service-item">
+						<div class="service-icon">🛣️</div>
+						<div class="service-content">
+							<h4>Междугородняя эвакуация</h4>
+							<p>
+								Эвакуация автомобилей по Воронежской области и в соседние
+								регионы.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Pricing Section -->
+		<section class="pricing">
+			<div class="container">
+				<div class="section-title">
+					<h3>Стоимость услуг</h3>
+				</div>
+				<div class="pricing-cards">
+					<div class="pricing-card">
+						<div class="pricing-header">
+							<h4>По городу</h4>
+							<div class="price">от 3000 ₽</div>
+						</div>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li>Прибытие за 30 минут</li>
+								<li>Погрузка/разгрузка</li>
+								<li>Перевозка до 15 км</li>
+								<li>Безналичный расчет</li>
+							</ul>
+							<a href="tel:+79518615111" class="cta-button">Вызвать</a>
+						</div>
+					</div>
+					<div class="pricing-card">
+						<div class="pricing-header">
+							<h4>По области</h4>
+							<div class="price">от 5000 ₽</div>
+						</div>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li>Выезд в любую точку области</li>
+								<li>Погрузка/разгрузка</li>
+								<li>Фиксированная цена</li>
+								<li>Возможен торг</li>
+							</ul>
+							<a href="tel:+79518615111" class="cta-button">Вызвать</a>
+						</div>
+					</div>
+					<div class="pricing-card">
+						<div class="pricing-header">
+							<h4>Спецтехника</h4>
+							<div class="price">Договорная</div>
+						</div>
+						<div class="pricing-body">
+							<ul class="pricing-features">
+								<li>Эвакуация грузовиков</li>
+								<li>Эвакуация джипов</li>
+								<li>Эвакуация спецтехники</li>
+								<li>Индивидуальный подход</li>
+							</ul>
+							<a href="tel:+79518615111" class="cta-button">Вызвать</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Testimonials Section -->
+		<section class="testimonials">
+			<div class="container">
+				<div class="section-title">
+					<h3>Отзывы клиентов</h3>
+				</div>
+				<div class="testimonial-cards">
+					<div class="testimonial-card">
+						<div class="testimonial-content">
+							<p>
+								Сломался на трассе М4, позвонил, приехали за 40 минут несмотря
+								на то, что я был за городом. Цена оказалась даже ниже, чем
+								сказали по телефону. Рекомендую!
+							</p>
+						</div>
+						<div class="testimonial-author">
+							<div class="author-avatar">АС</div>
+							<div class="author-info">
+								<h5>Александр С.</h5>
+								<p>Водитель Skoda Octavia</p>
+							</div>
+						</div>
+					</div>
+					<div class="testimonial-card">
+						<div class="testimonial-content">
+							<p>
+								Очень благодарна ребятам за оперативность! Ночью села АКБ, утром
+								нужно было ехать на работу. Приехали быстро, помогли запустить
+								двигатель.
+							</p>
+						</div>
+						<div class="testimonial-author">
+							<div class="author-avatar">ЕК</div>
+							<div class="author-info">
+								<h5>Елена К.</h5>
+								<p>Владелица Hyundai Solaris</p>
+							</div>
+						</div>
+					</div>
+					<div class="testimonial-card">
+						<div class="testimonial-content">
+							<p>
+								Застрял в грязи, пытаясь объехать пробку. Ребята приехали
+								оперативно, вытащили. Цена адекватная, сервис на высоте.
+								Спасибо!
+							</p>
+						</div>
+						<div class="testimonial-author">
+							<div class="author-avatar">ДМ</div>
+							<div class="author-info">
+								<h5>Дмитрий М.</h5>
+								<p>Владелец Toyota Land Cruiser</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
+		<section class="contact" id="contact">
+			<div class="container">
+				<div class="section-title">
+					<h3>Связаться с нами</h3>
+				</div>
+				<div class="contact-info">
+					<div class="contact-card">
+						<div class="contact-icon">📞</div>
+						<h4>Телефон</h4>
+						<p>+7 (951) 861-51-11</p>
+						<p>+7 (961) 181-57-77</p>
+					</div>
+					<div class="contact-card">
+						<div class="contact-icon">📧</div>
+						<h4>Email</h4>
+						<p>info@evacuator-vrn.ru</p>
+						<p>help@evacuator-vrn.ru</p>
+					</div>
+					<div class="contact-card">
+						<div class="contact-icon">🏢</div>
+						<h4>Адрес</h4>
+						<p>Выручаем Вас в любой точке России!</p>
+					</div>
+				</div>
+
+				<!-- <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" class="form-control" placeholder="Иван Иванов">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+7 (___) ___-__-__">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" class="form-control" placeholder="Опишите вашу ситуацию..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Отправить заявку</button>
+                </form>
+            </div> -->
+
+				<!-- <div class="map"> -->
+				<!-- Место для карты -->
+				<!-- <img src="/api/placeholder/1200/400" alt="Карта с нашим местоположением" style="width: 100%; height: 100%; object-fit: cover;">
+            </div> -->
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="footer-content">
+					<div class="logo">
+						<div class="logo-icon">🚚</div>
+						<h1>ЭвакуаторВоронеж</h1>
+					</div>
+				</div>
+				<div class="footer-links">
+					<a href="#">Главная</a>
+					<a href="#">Услуги</a>
+					<a href="#">Цены</a>
+					<a href="#contact">Контакты</a>
+				</div>
+				<div class="social-links">
+					<a href="#" class="social-link">VK</a>
+					<a href="#" class="social-link">TG</a>
+					<a href="#" class="social-link">WA</a>
+				</div>
+				<div class="copyright">
+					&copy; 2025 ЭвакуаторВоронеж. Все права защищены.
+				</div>
+			</div>
+		</footer>
+
+		<!-- Floating Call Button -->
+		<!-- <a href="#">+7 (951) 861-51-11</a> -->
+	</body>
+</html>
